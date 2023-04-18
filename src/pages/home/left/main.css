@@ -1,0 +1,29 @@
+#container > p{
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#major p{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#others p{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#mobile-sidebar{
+    display: none;
+}
+
+@media screen and (max-width: 500px){
+    #container {
+        background-color:white;
+        display: none;
+    }
+
+    #mobile-sidebar{
+        display: flex;
+    }
+}
