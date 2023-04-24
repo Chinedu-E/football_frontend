@@ -52,7 +52,7 @@ const CenterDiv = (props: DivProps) => {
         }, [league]);
 
     return (
-        <div id="center" style={{textAlign: "center"}}>
+        <Container id="center" sx={{textAlign: "center"}}>
             <TableContainer component={Paper} sx={{border: '1px solid #000'}}>
                 <Table stickyHeader aria-label="simple table" size="small">
                     <TableHead>
@@ -155,7 +155,7 @@ const CenterDiv = (props: DivProps) => {
             
             
             
-        </div>
+        </Container>
     )
 }
 
