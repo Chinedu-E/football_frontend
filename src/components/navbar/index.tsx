@@ -99,17 +99,6 @@ const Navbar = () => {
           </List>
           <Divider />
           <List>
-            <ListItem disablePadding>
-              <ListItemButton onClick={() => {navigate("/")}}>
-                <ListItemIcon>
-                  <StarIcon/>
-                </ListItemIcon>
-                <ListItemText primary="Featured" />
-              </ListItemButton>
-            </ListItem>
-          </List>
-          <Divider />
-          <List>
             {['Premier League', 'La Liga', 'Bundesliga', 'Serie A', 'Ligue one'].map((text, index) => (
               <ListItem key={text} disablePadding>
                 <ListItemButton onClick={() => {navigateLeague(text)}}>
