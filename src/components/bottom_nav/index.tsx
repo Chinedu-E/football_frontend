@@ -18,7 +18,7 @@ export default function BottomNav() {
 
   return (
     <div id="mobile-nav">
-    <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, opacity: 1 }} elevation={3}>
+    <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, opacity: 1 }}>
       <BottomNavigation
         showLabels
         value={value}
@@ -34,7 +34,7 @@ export default function BottomNav() {
         <BottomNavigationAction label="News" icon={<FeedIcon />} />
         <BottomNavigationAction label="Scores" icon={<SportsIcon />} />
       </BottomNavigation>
-    </Paper>
+    </div>
     </div>
   );
 }

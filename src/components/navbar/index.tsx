@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink as Link } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Container } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
 import Drawer from '@mui/material/Drawer';
@@ -12,6 +12,10 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import StarIcon from '@mui/icons-material/Star';
+import HomeIcon from '@mui/icons-material/Home';
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import SportsIcon from '@mui/icons-material/Sports';
+import BatchPredictionIcon from '@mui/icons-material/BatchPrediction';
 import { useNavigate } from 'react-router-dom';
 import "./nav.css"
 
@@ -78,6 +82,22 @@ const Navbar = () => {
           onClick={toggleDrawer(anchor, false)}
           onKeyDown={toggleDrawer(anchor, false)}
         >
+          <List id="mobile">
+            {[{"name": 'Home', "icon": <HomeIcon/>, "to": "/"},
+             {"name": 'Scores', "icon": <SportsIcon/>, "to": "/scores"},
+             {"name": 'Predictions', "icon": <BatchPredictionIcon/>, "to": "/predictions"},
+              {"name": 'Standings', "icon": <EmojiEventsIcon/>, "to": "/standings"}].map((nav, index) => (
+              <ListItem key={nav.name} disablePadding>
+                <ListItemButton onClick={() => {navigate(nav.to)}}>
+                  <ListItemIcon>
+                    {nav.icon}
+                  </ListItemIcon>
+                  <ListItemText primary={nav.name} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
           <List>
             <ListItem disablePadding>
               <ListItemButton onClick={() => {navigate("/")}}>

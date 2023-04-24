@@ -7,14 +7,12 @@ import StandingsPage from './pages/standings';
 import PredictionPage from './pages/predictions';
 import ScoresPage from './pages/scores';
 import LeaguePage from './pages/league';
-import BottomNav from './components/bottom_nav';
 
 function App() {
   
   return (
     <div>
       <Navbar />
-      <BottomNav/>
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/standings" element={<StandingsPage/>} />

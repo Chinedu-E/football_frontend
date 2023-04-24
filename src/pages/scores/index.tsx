@@ -56,7 +56,7 @@ export default function ScoresPage(){
     })
 
     React.useEffect(() => {
-        fetch(`/scores/2023?limit=20`)
+        fetch(`https://prem-backend-production.up.railway.app/scores/2023?limit=20`)
         .then(response => response.json())
         .then(data => setPredictions(data));
         }, []);

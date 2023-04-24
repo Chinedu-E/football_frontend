@@ -3,13 +3,21 @@
     padding: 0;
     box-sizing: border-box;
     }
-
+#mobile{
+    display: none;
+}
     
 .navbar {
     background-color: #333;
     overflow: hidden;
     }
     
+.scrolled{
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: lightblue;
+      }
 .navbar a {
     float: right;
     display: block;
@@ -29,6 +37,9 @@
     }
     
 @media screen and (max-width: 500px) {
+    #mobile{
+        display: inline;
+    }
     .navbar a:not(:first-child) {
     display: none;
     }
