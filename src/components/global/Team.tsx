@@ -32,7 +32,7 @@ export default function TeamCard(props: TeamCardProps){
             display: 'flex',
             alignItems: 'center'}}>
                 <Box sx={{paddingRight: 2}}>
-                    <Avatar src={getTeamlogoUrl(team)} alt=""/>
+                    <Avatar src={getTeamlogoUrl(team)} alt="" sx={{ width: 24, height: 24 }}/>
                 </Box>
                 
                 <Typography>{team}</Typography>

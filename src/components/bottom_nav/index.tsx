@@ -18,7 +18,7 @@ export default function BottomNav() {
 
   return (
     <div id="mobile-nav">
-    <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+    <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, opacity: 1 }} elevation={3}>
       <BottomNavigation
         showLabels
         value={value}

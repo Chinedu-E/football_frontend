@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink as Link } from 'react-router-dom';
-import Box from '@mui/material/Box';
+import Avatar from '@mui/material/Avatar';
+import { Box, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
 import Drawer from '@mui/material/Drawer';
@@ -11,13 +12,13 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import StarIcon from '@mui/icons-material/Star';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import { useNavigate } from 'react-router-dom';
 import "./nav.css"
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
 const Navbar = () => {
+    const navigate = useNavigate();
     const [state, setState] = React.useState({
         top: false,
         left: false,
@@ -39,6 +40,37 @@ const Navbar = () => {
       setState({ ...state, [anchor]: open });
     };
 
+    const navigateLeague = (league: string) => {
+      let url = getNavUrl(league);
+      navigate(url);
+      window.location.reload();
+    }
+    const getNavUrl = (league: string) => {
+      league = league.toLowerCase()
+      league = league.replace(" ", "_");
+      return `/leagues/${league}`
+    }
+
+    const getLeagueLogoUrl = (league: string) => {
+      switch (league) {
+
+        case "Premier League":
+          return `/england.png`
+
+        case "Bundesliga":
+          return `/germany.png`
+
+        case "Serie A":
+          return `/italy.png`
+
+        case "La Liga":
+          return `/spain.png`
+
+        case "Ligue one":
+          return `/france.png`
+      }
+    }
+
     const list = (anchor: Anchor) => (
         <Box
           sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
@@ -47,24 +79,22 @@ const Navbar = () => {
           onKeyDown={toggleDrawer(anchor, false)}
         >
           <List>
-            {['Featured'].map((text, index) => (
-              <ListItem key={text} disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>
-                    <StarIcon/>
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItemButton>
-              </ListItem>
-            ))}
+            <ListItem disablePadding>
+              <ListItemButton onClick={() => {navigate("/")}}>
+                <ListItemIcon>
+                  <StarIcon/>
+                </ListItemIcon>
+                <ListItemText primary="Featured" />
+              </ListItemButton>
+            </ListItem>
           </List>
           <Divider />
           <List>
-            {['Premier League', 'La Liga', 'Bundesliga', 'Serie A', 'League one'].map((text, index) => (
+            {['Premier League', 'La Liga', 'Bundesliga', 'Serie A', 'Ligue one'].map((text, index) => (
               <ListItem key={text} disablePadding>
-                <ListItemButton>
+                <ListItemButton onClick={() => {navigateLeague(text)}}>
                   <ListItemIcon>
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                    <Avatar src={getLeagueLogoUrl(text)} alt="" sx={{ width: 24, height: 24 }}/>
                   </ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItemButton>
@@ -79,7 +109,6 @@ const Navbar = () => {
             <IconButton onClick={toggleDrawer('left', true)} style={{color: 'white'}}>
                 <MenuIcon/>
             </IconButton>
-            <Link to="/news">News</Link>
             <Link to="/standings">Standings</Link>
             <Link to="/scores">Scores</Link>
             <Link to="/predictions">Predictions</Link>

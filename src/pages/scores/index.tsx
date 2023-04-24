@@ -28,10 +28,35 @@ export default function ScoresPage(){
             'FTHG': '',
             'FTAG': '',
             'Referee': '',
-        }],})
+        }],
+        'bundesliga': [{
+            'Date': '',
+            'HomeTeam': '',
+            'AwayTeam': '',
+            'FTHG': '',
+            'FTAG': '',
+            'Referee': '',
+        }],
+        'ligue_one': [{
+            'Date': '',
+            'HomeTeam': '',
+            'AwayTeam': '',
+            'FTHG': '',
+            'FTAG': '',
+            'Referee': '',
+        }],
+        'serie_a': [{
+            'Date': '',
+            'HomeTeam': '',
+            'AwayTeam': '',
+            'FTHG': '',
+            'FTAG': '',
+            'Referee': '',
+        }],
+    })
 
     React.useEffect(() => {
-        fetch(`http://127.0.0.1:8000/scores/2023?limit=20`)
+        fetch(`/scores/2023?limit=20`)
         .then(response => response.json())
         .then(data => setPredictions(data));
         }, []);
@@ -51,14 +76,11 @@ export default function ScoresPage(){
                                     Date
                                 </TableCell>
                                 <TableCell align="center">
-                                    Referee
-                                </TableCell>
-                                <TableCell align="center">
                                     Score
                                 </TableCell>
                             </TableRow>
                             <TableRow>
-                                <TableCell align="center" colSpan={4}>
+                                <TableCell align="center" colSpan={3}>
                                     All leagues
                                 </TableCell>
                             </TableRow>
@@ -70,10 +92,7 @@ export default function ScoresPage(){
                                     <TeamsCard hometeam={prediction.HomeTeam} awayteam={prediction.AwayTeam}/>
                                 </TableCell>
                                 <TableCell align="center">
-                                    {prediction.Date}
-                                </TableCell>
-                                <TableCell align="center">
-                                    {prediction.Referee}
+                                    {prediction.Date.substring(0, prediction.Date.length -9)}
                                 </TableCell>
                                 <TableCell align="center">
                                     {prediction.FTHG} -  {prediction.FTAG}
@@ -86,10 +105,46 @@ export default function ScoresPage(){
                                     <TeamsCard hometeam={prediction.HomeTeam} awayteam={prediction.AwayTeam}/>
                                 </TableCell>
                                 <TableCell align="center">
-                                    {prediction.Date}
+                                {prediction.Date.substring(0, prediction.Date.length -9)}
                                 </TableCell>
                                 <TableCell align="center">
-                                    {prediction.Referee}
+                                    {prediction.FTHG} -  {prediction.FTAG}
+                                </TableCell>
+                                </TableRow>
+                            ))}
+                            {predictions.bundesliga.map((prediction) =>  (
+                                <TableRow  hover>
+                                <TableCell align="center">
+                                    <TeamsCard hometeam={prediction.HomeTeam} awayteam={prediction.AwayTeam}/>
+                                </TableCell>
+                                <TableCell align="center">
+                                {prediction.Date.substring(0, prediction.Date.length -9)}
+                                </TableCell>
+                                <TableCell align="center">
+                                    {prediction.FTHG} -  {prediction.FTAG}
+                                </TableCell>
+                                </TableRow>
+                            ))}
+                            {predictions.ligue_one.map((prediction) =>  (
+                                <TableRow  hover>
+                                <TableCell align="center">
+                                    <TeamsCard hometeam={prediction.HomeTeam} awayteam={prediction.AwayTeam}/>
+                                </TableCell>
+                                <TableCell align="center">
+                                {prediction.Date.substring(0, prediction.Date.length -9)}
+                                </TableCell>
+                                <TableCell align="center">
+                                    {prediction.FTHG} -  {prediction.FTAG}
+                                </TableCell>
+                                </TableRow>
+                            ))}
+                            {predictions.serie_a.map((prediction) =>  (
+                                <TableRow  hover>
+                                <TableCell align="center">
+                                    <TeamsCard hometeam={prediction.HomeTeam} awayteam={prediction.AwayTeam}/>
+                                </TableCell>
+                                <TableCell align="center">
+                                {prediction.Date.substring(0, prediction.Date.length -9)}
                                 </TableCell>
                                 <TableCell align="center">
                                     {prediction.FTHG} -  {prediction.FTAG}

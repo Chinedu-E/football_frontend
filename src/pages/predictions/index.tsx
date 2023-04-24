@@ -26,10 +26,18 @@ export default function PredictionPage(){
             '1': '',
             'X': '',
             '2': '',
-        }]})
+        }],
+        'bundesliga': [{
+            'HomeTeam': '',
+            'AwayTeam': '',
+            '1': '',
+            'X': '',
+            '2': '',
+        }],
+    })
 
     React.useEffect(() => {
-        fetch(`http://127.0.0.1:8000/predictions`)
+        fetch(`https://prem-backend-production.up.railway.app/predictions`)
         .then(response => response.json())
         .then(data => setPredictions(data));
         }, []);
@@ -93,6 +101,25 @@ export default function PredictionPage(){
                             </TableRow>
                         ))}
                         {predictions.la_liga.map((prediction) =>  (
+                            <TableRow  hover>
+                            <TableCell align="center">
+                                <TeamsCard hometeam={prediction.HomeTeam} awayteam={prediction.AwayTeam}/>
+                            </TableCell>
+                            <TableCell align="center">
+                                {prediction['1']}
+                            </TableCell>
+                            <TableCell align="center">
+                                {prediction.X}
+                            </TableCell>
+                            <TableCell align="center">
+                                {prediction['2']}
+                            </TableCell>
+                            <TableCell align="center">
+                                5-0
+                            </TableCell>
+                            </TableRow>
+                        ))}
+                        {predictions.bundesliga.map((prediction) =>  (
                             <TableRow  hover>
                             <TableCell align="center">
                                 <TeamsCard hometeam={prediction.HomeTeam} awayteam={prediction.AwayTeam}/>

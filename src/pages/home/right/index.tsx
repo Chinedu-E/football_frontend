@@ -3,10 +3,12 @@ import "./main.css"
 import SummarizedTable from "../../../components/standings/SummaryTable";
 import defaultSummarizedTableRow from "../../../data/default/default_summary_table";
 
+type DivProps = {
+    league?: string;
+}
 
-const RightDiv = () => {
-
-    const league = "premier_league";
+const RightDiv = (props: DivProps) => {
+    const {league} = props;
     const [standings, setStandings] = useState([{
       "header": [""],
       "description": [""],
@@ -14,7 +16,8 @@ const RightDiv = () => {
       "league": ""
     }])
     useEffect(() => {
-        fetch(`http://127.0.0.1:8000/standings/2023?table_type=summary`)
+        const url = league ? `https://prem-backend-production.up.railway.app/standings/${league}/2023?table_type=summary`: "https://prem-backend-production.up.railway.app/standings/2023?table_type=summary"
+        fetch(url)
         .then(response => response.json())
         .then(data => setStandings(data));
         }, [league]);

@@ -36,7 +36,7 @@ export default function TeamsCard(props: TeamCardProps){
             padding: 1,
             alignItems: 'center'}}>
                 <Box sx={{paddingRight: 2}}>
-                    <Avatar src={getTeamlogoUrl(hometeam)} alt=""/>
+                    <Avatar src={getTeamlogoUrl(hometeam)} alt="" sx={{ width: 34, height: 34 }}/>
                 </Box>
                 
                 <Typography>{hometeam}</Typography>
@@ -46,7 +46,7 @@ export default function TeamsCard(props: TeamCardProps){
             padding: 1,
             alignItems: 'center'}}>
                 <Box sx={{paddingRight: 2}}>
-                    <Avatar src={getTeamlogoUrl(awayteam)} alt=""/>
+                    <Avatar src={getTeamlogoUrl(awayteam)} alt="" sx={{ width: 34, height: 34 }}/>
                 </Box>
                 
                 <Typography>{awayteam}</Typography>

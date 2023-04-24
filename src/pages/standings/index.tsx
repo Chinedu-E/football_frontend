@@ -11,7 +11,7 @@ export default function StandingsPage(){
       "league": ""
     }])
     useEffect(() => {
-        fetch(`http://127.0.0.1:8000/standings/2023?table_type=full`)
+        fetch(`https://prem-backend-production.up.railway.app/standings/2023?table_type=full`)
         .then(response => response.json())
         .then(data => setStandings(data));
         }, []);

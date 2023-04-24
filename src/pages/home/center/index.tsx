@@ -6,51 +6,59 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Container } from '@mui/material';
+import { Container, Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import NewsCard from '../../../components/news';
 import defaultNews from '../../../data/default/default_news';
 import "./main.css";
 import TeamsCard from '../../../components/global/Teams';
+import OddsModal from '../../../components/odds_modal';
 
+type DivProps = {
+    league?: string;
+}
 
-
-const CenterDiv = () => {
+const CenterDiv = (props: DivProps) => {
+    const {league} = props;
+    const navigate = useNavigate();
     const [news, setNews] = React.useState([defaultNews])
     const [featured, setFeatured]  = React.useState([[
         {
             'HomeTeam': '',
             'AwayTeam': '',
-            '1': '',
-            'X': '',
-            '2': '',
+            '1': 0.0,
+            'X': 0.0,
+            '2': 0.0,
             'HG': '',
             'AG': '',
-            'B365H': '',
-            'B365D': '',
-            'B365A': '',
+            'B365H': 1.0,
+            'B365D': 1.0,
+            'B365A': 1.0,
         }
     ]])
 
     React.useEffect(() => {
-        fetch(`http://127.0.0.1:8000/news/premier_league`)
+        const url = league ? `https://prem-backend-production.up.railway.app/news/${league}`: "https://prem-backend-production.up.railway.app/news"
+        fetch(url)
         .then(response => response.json())
-        .then(data => setNews(data.news));
-        }, []);
+        .then(data => setNews(data));
+        }, [league]);
 
     React.useEffect(() => {
-        fetch(`http://127.0.0.1:8000/featured`)
+        const url = league ? `https://prem-backend-production.up.railway.app/featured/${league}`: "https://prem-backend-production.up.railway.app/featured"
+        fetch(url)
         .then(response => response.json())
         .then(data => setFeatured(data));
-        }, []);
+        }, [league]);
 
     return (
-        <Container id="center" style={{width: '100%', textAlign: 'center', height: '100%'}}>
-            <TableContainer component={Paper}>
+        <Container id="center" sx={{textAlign: "center"}}>
+            <TableContainer component={Paper} sx={{border: '1px solid #000'}}>
                 <Table stickyHeader aria-label="simple table" size="small">
                     <TableHead>
-                        <TableRow>
+                        <TableRow sx={{fontWeight: 'bold'}}>
                             <TableCell></TableCell>
-                            <TableCell align="center" colSpan={3}>
+                            <TableCell align="center" colSpan={3} sx={{fontWeight: 'bold'}}>
                                 Probabilty%
                             </TableCell>
                             <TableCell></TableCell>
@@ -58,37 +66,37 @@ const CenterDiv = () => {
                             <TableCell></TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell  align="center">
+                            <TableCell align="center" sx={{fontWeight: 'bold'}}>
                                 <div id='teams'>
                                     Home Team <br />
                                     - <br />
                                     Away Team
                                 </div>
                             </TableCell>
-                            <TableCell align="center">
+                            <TableCell align="center" sx={{fontWeight: 'bold'}}>
                                 Home
                             </TableCell>
-                            <TableCell align="center">
+                            <TableCell align="center" sx={{fontWeight: 'bold'}}>
                                 Draw
                             </TableCell>
-                            <TableCell align="center">
+                            <TableCell align="center" sx={{fontWeight: 'bold'}}>
                                 Away
                             </TableCell>
-                            <TableCell align="center">
+                            <TableCell align="center" sx={{fontWeight: 'bold'}}>
                                 Predicted <br />
                                 Score
                             </TableCell>
-                            <TableCell align="center">
+                            <TableCell align="center" sx={{fontWeight: 'bold'}}>
                                 Correct <br />
                                 Score
                             </TableCell>
-                            <TableCell align="center">
+                            <TableCell align="center" sx={{fontWeight: 'bold'}}>
                                 Bookies <br />
                                 Odds
                             </TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell align="center" colSpan={7}>
+                            <TableCell align="center" colSpan={7} sx={{fontWeight: 'bold'}}>
                                 Featured
                             </TableCell>
                         </TableRow>
@@ -105,7 +113,9 @@ const CenterDiv = () => {
                                     <TableCell align="center">{item['2']}</TableCell>
                                     <TableCell align="center">{item.HG} - {item.AG}</TableCell>
                                     <TableCell align="center">{item.HG} - {item.AG}</TableCell>
-                                    <TableCell align="center">View</TableCell>
+                                    <TableCell align="center">
+                                        <OddsModal home={item.HomeTeam} away={item.AwayTeam} home_odds={item.B365H} away_odds={item.B365A} draw_odds={item.B365D}/>
+                                    </TableCell>
                                 </TableRow>
                             ))
                         
@@ -113,10 +123,14 @@ const CenterDiv = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
-
-            <div>
-                View all predictions
-            </div>
+            
+            {league ? null: (
+                <div style={{padding: 20}}>
+                    <Button size="small" variant='contained' onClick={() =>{navigate("/predictions")}} sx={{bgcolor: "#333"}}>
+                        View all predictions
+                    </Button>
+                </div>
+            )}
 
             
             <div id="news-grid" >

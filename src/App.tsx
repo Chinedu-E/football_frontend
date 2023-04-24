@@ -6,7 +6,7 @@ import Home from './pages/home';
 import StandingsPage from './pages/standings';
 import PredictionPage from './pages/predictions';
 import ScoresPage from './pages/scores';
-import NewsPage from './pages/news';
+import LeaguePage from './pages/league';
 import BottomNav from './components/bottom_nav';
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
         <Route path="/standings" element={<StandingsPage/>} />
         <Route path="/predictions" element={<PredictionPage/>} />
         <Route path="/scores" element={<ScoresPage/>} />
-        <Route path="/news" element={<NewsPage/>} />
+        <Route path="/leagues/:league" element={<LeaguePage/>} />
       </Routes>
     </div>
   );
