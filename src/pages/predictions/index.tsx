@@ -34,6 +34,20 @@ export default function PredictionPage(){
             'X': '',
             '2': '',
         }],
+        'ligue_one': [{
+            'HomeTeam': '',
+            'AwayTeam': '',
+            '1': '',
+            'X': '',
+            '2': '',
+        }],
+        'serie_a': [{
+            'HomeTeam': '',
+            'AwayTeam': '',
+            '1': '',
+            'X': '',
+            '2': '',
+        }],
     })
 
     React.useEffect(() => {
@@ -91,9 +105,6 @@ export default function PredictionPage(){
                             <TableCell align="center">
                                 {prediction['2']}
                             </TableCell>
-                            <TableCell align="center">
-                                5-0
-                            </TableCell>
                             </TableRow>
                         ))}
                         {predictions.la_liga.map((prediction) =>  (
@@ -126,8 +137,37 @@ export default function PredictionPage(){
                             <TableCell align="center">
                                 {prediction['2']}
                             </TableCell>
+                            </TableRow>
+                        ))}
+                        {predictions.serie_a.map((prediction) =>  (
+                            <TableRow  hover>
                             <TableCell align="center">
-                                5-0
+                                <TeamsCard hometeam={prediction.HomeTeam} awayteam={prediction.AwayTeam}/>
+                            </TableCell>
+                            <TableCell align="center">
+                                {prediction['1']}
+                            </TableCell>
+                            <TableCell align="center">
+                                {prediction.X}
+                            </TableCell>
+                            <TableCell align="center">
+                                {prediction['2']}
+                            </TableCell>
+                            </TableRow>
+                        ))}
+                        {predictions.ligue_one.map((prediction) =>  (
+                            <TableRow  hover>
+                            <TableCell align="center">
+                                <TeamsCard hometeam={prediction.HomeTeam} awayteam={prediction.AwayTeam}/>
+                            </TableCell>
+                            <TableCell align="center">
+                                {prediction['1']}
+                            </TableCell>
+                            <TableCell align="center">
+                                {prediction.X}
+                            </TableCell>
+                            <TableCell align="center">
+                                {prediction['2']}
                             </TableCell>
                             </TableRow>
                         ))}
