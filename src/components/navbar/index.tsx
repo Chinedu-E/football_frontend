@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink as Link } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
-import { Box, Typography, Container } from '@mui/material';
+import { Box} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
 import Drawer from '@mui/material/Drawer';
@@ -11,7 +11,6 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import StarIcon from '@mui/icons-material/Star';
 import HomeIcon from '@mui/icons-material/Home';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import SportsIcon from '@mui/icons-material/Sports';
