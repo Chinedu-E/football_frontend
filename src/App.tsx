@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import Navbar from './components/navbar';
 import Home from './pages/home';
 import StandingsPage from './pages/standings';
@@ -20,6 +21,7 @@ function App() {
         <Route path="/scores" element={<ScoresPage/>} />
         <Route path="/leagues/:league" element={<LeaguePage/>} />
       </Routes>
+      <Analytics />
     </div>
   );
 }
