@@ -69,13 +69,9 @@ export default function PredictionPage(){
                             <TableCell align="center">
                                 Away
                             </TableCell>
-                            <TableCell align="center">
-                                Predicted <br />
-                                Score
-                            </TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell align="center" colSpan={5}  sx={{backgroundColor: 'grey'}}>
+                            <TableCell align="center" colSpan={4}  sx={{backgroundColor: 'grey'}}>
                                 Featured
                             </TableCell>
                         </TableRow>
@@ -113,9 +109,6 @@ export default function PredictionPage(){
                             </TableCell>
                             <TableCell align="center">
                                 {prediction['2']}
-                            </TableCell>
-                            <TableCell align="center">
-                                5-0
                             </TableCell>
                             </TableRow>
                         ))}

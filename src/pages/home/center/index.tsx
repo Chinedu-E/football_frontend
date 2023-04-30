@@ -83,10 +83,6 @@ const CenterDiv = (props: DivProps) => {
                                 Away
                             </TableCell>
                             <TableCell align="center" sx={{fontWeight: 'bold'}}>
-                                Predicted <br />
-                                Score
-                            </TableCell>
-                            <TableCell align="center" sx={{fontWeight: 'bold'}}>
                                 Correct <br />
                                 Score
                             </TableCell>
@@ -111,7 +107,6 @@ const CenterDiv = (props: DivProps) => {
                                     <TableCell align="center">{item['1']}</TableCell>
                                     <TableCell align="center">{item.X}</TableCell>
                                     <TableCell align="center">{item['2']}</TableCell>
-                                    <TableCell align="center">{item.HG} - {item.AG}</TableCell>
                                     <TableCell align="center">{item.HG} - {item.AG}</TableCell>
                                     <TableCell align="center">
                                         <OddsModal home={item.HomeTeam} away={item.AwayTeam} home_odds={item.B365H} away_odds={item.B365A} draw_odds={item.B365D}/>
